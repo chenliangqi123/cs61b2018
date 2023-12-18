@@ -9,8 +9,8 @@ public class ArrayDeque<T> {
         array = (T[]) new Object[8];
         size = 0;
         length = 8;
-        front = 3;
-        last = 3;
+        front = 4;
+        last = 4;
     }
 
     public boolean isEmpty() {
@@ -30,6 +30,7 @@ public class ArrayDeque<T> {
     }
 
     private int plusOne(int index, int modulo) {
+        index = index % modulo;
         if (index == modulo - 1) {
             return 0;
         }

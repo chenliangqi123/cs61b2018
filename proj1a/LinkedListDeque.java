@@ -1,6 +1,4 @@
 public class LinkedListDeque<T> {
-
-
     public class Node {
         private Node prev;
         private T item;
@@ -16,8 +14,6 @@ public class LinkedListDeque<T> {
             this.prev = prev;
             this.next = next;
         }
-
-
     }
 
     private Node sentinel;
@@ -91,10 +87,10 @@ public class LinkedListDeque<T> {
             return null;
         }
         Node ptr = sentinel;
-        int current_index = -1;
-        while (current_index != index) {
+        int currentIndex = -1;
+        while (currentIndex != index) {
             ptr = ptr.next;
-            current_index++;
+            currentIndex++;
         }
         return ptr.item;
     }
