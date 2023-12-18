@@ -93,7 +93,7 @@ public class ArrayDeque<T> {
             return null;
         }
         T item = array[front];
-        front = minusOne(front);
+        front = plusOne(front, length);
         size--;
         return item;
     }
