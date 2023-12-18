@@ -80,8 +80,8 @@ public class ArrayDeque<T> {
         if (size == length - 1) {
             grow();
         }
-        last = plusOne(last, length);
         array[last] = item;
+        last = plusOne(last, length);
         size++;
     }
 
@@ -94,6 +94,7 @@ public class ArrayDeque<T> {
         }
         T item = array[front];
         front = minusOne(front);
+        size--;
         return item;
     }
 
@@ -104,8 +105,9 @@ public class ArrayDeque<T> {
         if (size == 0) {
             return null;
         }
-        T item = array[last];
         last = minusOne(last);
+        T item = array[last];
+        size--;
         return item;
     }
 
