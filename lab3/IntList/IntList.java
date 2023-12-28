@@ -108,22 +108,48 @@ public class IntList {
         return new IntList(A.first, catenate(A.rest, B));
 //        return null;
     }
-
+//    non-destructive
+//    public static IntList reverse(IntList A) {
+//        if (A == null) {
+//            return null;
+//        }
+//        IntList B = new IntList(A.first, null);
+//        IntList ptr = A;
+//        while (ptr.rest != null) {
+//            ptr = ptr.rest;
+//            int a = ptr.first;
+//            B = new IntList(a, B);
+//        }
+//        A.first = B.first;
+//        A.rest = B.rest;
+//        return B;
+//    }
+    //csdiy_author_method
+//    public static IntList reverse(IntList A) {
+//        if (A == null || A.rest == null) {
+//            return A;
+//        }
+//        IntList reversed = reverse(A.rest);
+//        A.rest.rest = A;
+//        A.rest = null;
+//        return reversed;
+//    }
     public static IntList reverse(IntList A) {
-        if (A == null) {
-            return null;
+        if (A == null || A.rest == null) {
+            return A;
         }
-        IntList B = new IntList(A.first, null);
+        IntList prev = null;
+        IntList next = null;
 
-        while (A.rest != null) {
-            A = A.rest;
-            int a = A.first;
-            B = new IntList(a, B);
+        while (A != null) {
+            next = A.rest;
+            A.rest = prev;
+            prev = A;
+            A = next;
         }
-
-        return B;
+        A = prev;
+        return A;
     }
-
 
 
 
