@@ -8,9 +8,12 @@ public class Palindrome {
     }
 
     public boolean isPalindrome(String word) {
+        if (word == null || word.length() <= 1) {
+            return true;
+        }
         int i = 0;
         while (i < word.length() / 2) {
-            if (word.charAt(i) != word.charAt(word.length()-1-i)) {
+            if (word.charAt(i) != word.charAt(word.length() - 1 - i)) {
                 return false;
             }
             i++;
@@ -19,9 +22,12 @@ public class Palindrome {
     }
 
     public boolean isPalindrome(String word, CharacterComparator cc) {
+        if (word == null || word.length() <= 1) {
+            return true;
+        }
         int i = 0;
         while (i < word.length() / 2) {
-            if (!cc.equalChars(word.charAt(i), word.charAt(word.length()-1-i))) {
+            if (!cc.equalChars(word.charAt(i), word.charAt(word.length() - 1 - i))) {
                 return false;
             }
             i++;

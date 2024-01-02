@@ -1,9 +1,11 @@
-public class OffByN implements CharacterComparator{
-    public int n;
-    public OffByN(int n) {
-        this.n = n;
+public class OffByN implements CharacterComparator {
+    private int n;
+
+    public OffByN(int a) {
+        this.n = a;
     }
+
     public boolean equalChars(char x, char y) {
-        return Math.abs(x-y) == n;
+        return Math.abs(x - y) == n;
     }
 }
