@@ -21,6 +21,7 @@ public class TestPalindrome {
     public void testIsPalindrome() {
         assertTrue(palindrome.isPalindrome("level"));
         assertTrue(palindrome.isPalindrome("noon"));
+        assertTrue(palindrome.isPalindrome(""));
         assertFalse(palindrome.isPalindrome("abb"));
         assertFalse(palindrome.isPalindrome("abc"));
     }
