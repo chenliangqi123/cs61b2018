@@ -1,3 +1,5 @@
+import ug.joshh.animal.Dog;
+
 public class test01 {
     public static void main(String[] args) {
         Inlist L = new Inlist(5, null);
@@ -10,6 +12,7 @@ public class test01 {
 //        System.out.println(SLList.size(new SLList.IntNode(4, null)));
         L2.addLast(20);
         System.out.println(L2.size());
+        ug.joshh.animal.Dog dog = new Dog();
 
     }
 }
