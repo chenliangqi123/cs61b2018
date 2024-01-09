@@ -20,7 +20,7 @@ public class TestArrayDequeGold {
                     expectedArray.addLast(addNumber);
                 }
             } else {
-                int situation = 4;
+                int situation = StdRandom.uniform(4);
                 int addNumber = StdRandom.uniform(1000);
                 Integer testRemoveNumber = 1;
                 Integer expectedRemoveNumber = 1;
