@@ -4,7 +4,7 @@ package synthesizer;
 import synthesizer.AbstractBoundedQueue;
 
 import java.util.Iterator;
-import java.util.Objects;
+
 
 //TODO: Make sure to make this class and all of its methods public
 //TODO: Make sure to make this class extend AbstractBoundedQueue<t>
@@ -25,7 +25,7 @@ public class ArrayRingBuffer<T> extends AbstractBoundedQueue<T> {
         //       this.capacity should be set appropriately. Note that the local variable
         //       here shadows the field we inherit from AbstractBoundedQueue, so
         //       you'll need to use this.capacity to set the capacity.
-        rb = (T[]) new Objects[capacity];
+        rb = (T[]) new Object[capacity];
         first = last = fillCount = 0;
         this.capacity = capacity;
     }
