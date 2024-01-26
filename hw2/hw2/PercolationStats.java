@@ -13,9 +13,9 @@ public class PercolationStats {
         }
         fractions = new double[T];
         trialTimes = T;
-        Percolation p = pf.make(N);
-        int numOpen = 0;
         for (int i = 0; i < T; i++) {
+            Percolation p = pf.make(N);
+            int numOpen = 0;
             while (!p.percolates()) {
                 int row = StdRandom.uniform(N);
                 int col = StdRandom.uniform(N);
