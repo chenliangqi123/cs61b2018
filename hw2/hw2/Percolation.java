@@ -10,7 +10,7 @@ public class Percolation {
     private WeightedQuickUnionUF topUnion;
     private WeightedQuickUnionUF overall;
     private int numOfOpenSites = 0;
-    private int[][] directions = {{0,1}, {1,0}, {-1,0}, {0, -1}};
+    private int[][] directions = {{0, 1}, {1, 0}, {-1, 0}, {0, -1}};
 
     // create N-by-N grid, with all sites initially blocked
     public Percolation(int N) {
@@ -31,7 +31,6 @@ public class Percolation {
     }
 
 
-
     public int mapping(int row, int col) {
         return row * size + col;
     }
@@ -49,11 +48,11 @@ public class Percolation {
             overall.union(top, currentNum);
             topUnion.union(top, currentNum);
         }
-        
+
         if (row == size - 1) {
             overall.union(bottom, currentNum);
         }
-        
+
         for (int[] direction : directions) {
             int dx = direction[0];
             int dy = direction[1];
@@ -83,18 +82,17 @@ public class Percolation {
 
     public static void main(String[] args) {
         Percolation p = new Percolation(3);
-        p.open(0,0);
-        p.open(1,0);
+        p.open(0, 0);
+        p.open(1, 0);
         p.open(2, 0);
         p.open(1, 2);
-        p.open(2,2);
-        System.out.println(p.isOpen(1,0));
-        System.out.println(p.isFull(2,2));
-        System.out.println(p.isFull(1,0));
+        p.open(2, 2);
+        System.out.println(p.isOpen(1, 0));
+        System.out.println(p.isFull(2, 2));
+        System.out.println(p.isFull(1, 0));
         System.out.println(p.percolates());
 //        System.out.println(p.isOpen(0, 0));
     }
-
 
 
 }
