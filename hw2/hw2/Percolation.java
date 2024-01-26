@@ -81,16 +81,16 @@ public class Percolation {
     }
 
     public static void main(String[] args) {
-        Percolation p = new Percolation(3);
-        p.open(0, 0);
-        p.open(1, 0);
-        p.open(2, 0);
-        p.open(1, 2);
-        p.open(2, 2);
-        System.out.println(p.isOpen(1, 0));
-        System.out.println(p.isFull(2, 2));
-        System.out.println(p.isFull(1, 0));
-        System.out.println(p.percolates());
+//        Percolation p = new Percolation(3);
+//        p.open(0, 0);
+//        p.open(1, 0);
+//        p.open(2, 0);
+//        p.open(1, 2);
+//        p.open(2, 2);
+//        System.out.println(p.isOpen(1, 0));
+//        System.out.println(p.isFull(2, 2));
+//        System.out.println(p.isFull(1, 0));
+//        System.out.println(p.percolates());
 //        System.out.println(p.isOpen(0, 0));
     }
 
