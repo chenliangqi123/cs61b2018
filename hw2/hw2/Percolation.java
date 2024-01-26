@@ -14,10 +14,10 @@ public class Percolation {
 
     // create N-by-N grid, with all sites initially blocked
     public Percolation(int N) {
-        grid = new boolean[N][N];
         if (N <= 0) {
             throw new IllegalArgumentException();
         }
+        grid = new boolean[N][N];
         size = N;
         top = N * N + 1;
 //        top = 0;
