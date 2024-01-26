@@ -26,19 +26,19 @@ public class Percolation {
         overall = new WeightedQuickUnionUF(N * N + 2);
     }
 
-    public boolean isValid(int row, int col) {
-        return 0 <= row && row < size && 0 <= col && col < size;
+    private void isValid(int row, int col) {
+        if (row < 0 || col < 0 || row >= size || col >= size) {
+            throw new IndexOutOfBoundsException();
+        }
     }
 
 
-    public int mapping(int row, int col) {
+    private int mapping(int row, int col) {
         return row * size + col;
     }
 
     public void open(int row, int col) {
-        if (!isValid(row, col)) {
-            throw new IndexOutOfBoundsException();
-        }
+        isValid(row, col);
         if (!isOpen(row, col)) {
             grid[row][col] = true;
             numOfOpenSites += 1;
@@ -56,7 +56,8 @@ public class Percolation {
         for (int[] direction : directions) {
             int dx = direction[0];
             int dy = direction[1];
-            if (isValid(row + dx, col + dy) && isOpen(row + dx, col + dy)) {
+            isValid(row + dx, col + dy);
+            if (isOpen(row + dx, col + dy)) {
                 int mappingNumber = mapping(row + dx, col + dy);
                 topUnion.union(currentNum, mappingNumber);
                 overall.union(currentNum, mappingNumber);
@@ -65,10 +66,12 @@ public class Percolation {
     }
 
     public boolean isOpen(int row, int col) {
+        isValid(row, col);
         return grid[row][col];
     }
 
     public boolean isFull(int row, int col) {
+        isValid(row, col);
         return topUnion.connected(top, mapping(row, col));
     }
 
