@@ -209,23 +209,38 @@ public class ArrayHeap<T> implements ExtrinsicPQ<T> {
     @Override
     public void changePriority(T item, double priority) {
         /* TODO: Your code here! */
-        int index = 0;
-        for (int i = 0; i <= size; i++) {
-            if (item.equals(contents[i].item())) {
-                index = i;
+//        int index = 0;
+//        for (int i = 0; i <= size; i++) {
+//            if (item.equals(contents[i].item())) {
+//                index = i;
+//            }
+//        }
+//
+//        contents[index].myPriority = priority;
+//        int parent = parentIndex(index);
+//        int leftChild = leftIndex(index);
+//        int rightChild = rightIndex(index);
+//
+//        if (isSmaller(index, parent)) {
+//            swim(index);
+//        }
+//        if (isSmaller(leftChild, index) || isSmaller(rightChild, index)) {
+//            sink(index);
+//        }
+        for (int index = 1; index <= size; index += 1) {
+            Node node = contents[index];
+            if (item.equals(node.item())) {
+                double prevPriority = node.priority();
+                Node newNode = new Node(item, priority);
+                contents[index] = newNode; // Changes the previous node to an new node
+
+                if (prevPriority > priority) {
+                    swim(index);
+                } else if (prevPriority < priority) {
+                    sink(index);
+                }
+                return;
             }
-        }
-
-        contents[index].myPriority = priority;
-        int parent = parentIndex(index);
-        int leftChild = leftIndex(index);
-        int rightChild = rightIndex(index);
-
-        if (isSmaller(index, parent)) {
-            swim(index);
-        }
-        if (isSmaller(leftChild, index) || isSmaller(rightChild, index)) {
-            sink(index);
         }
     }
 
