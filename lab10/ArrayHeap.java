@@ -211,7 +211,7 @@ public class ArrayHeap<T> implements ExtrinsicPQ<T> {
         /* TODO: Your code here! */
         int index = 0;
         for (int i = 0; i <= size; i++) {
-            if (contents[i].myItem.equals(item)) {
+            if (item.equals(contents[i])) {
                 index = i;
                 break;
             }
