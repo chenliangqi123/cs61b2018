@@ -37,7 +37,7 @@ public class Board implements WorldState {
         int count = 0;
         for (int i = 0; i < N; i++) {
             for (int j = 0; j < N; j++) {
-                if (initial[i][j] != BLANK && initial[i][j] != goal[i][j]) {
+                if (goal[i][j] != BLANK && initial[i][j] != goal[i][j]) {
                     count++;
                 }
             }
@@ -133,6 +133,11 @@ public class Board implements WorldState {
         }
         s.append("\n");
         return s.toString();
+    }
+
+    @Override
+    public int hashCode() {
+        return 0;
     }
 
 }
