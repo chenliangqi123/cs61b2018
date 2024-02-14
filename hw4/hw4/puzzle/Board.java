@@ -15,7 +15,7 @@ public class Board implements WorldState {
         initial = new int[N][N];
         for (int i = 0; i < N; i++) {
             for (int j = 0; j < N; j++) {
-                goal[i][j] = i * N + j;
+                goal[i][j] = i * N + j + 1;
             }
         }
         goal[N - 1][N - 1] = BLANK;
@@ -37,7 +37,7 @@ public class Board implements WorldState {
         int count = 0;
         for (int i = 0; i < N; i++) {
             for (int j = 0; j < N; j++) {
-                if (goal[i][j] != BLANK && initial[i][j] != goal[i][j]) {
+                if (goal[i][j] != BLANK && goal[i][j] != initial[i][j]) {
                     count++;
                 }
             }
