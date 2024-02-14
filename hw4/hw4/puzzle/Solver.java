@@ -8,29 +8,28 @@ import java.util.HashSet;
 import java.util.List;
 
 public class Solver {
-    private Stack<WorldState> solutions = new Stack<>();
+    private List<WorldState> solutions = new ArrayList<>();
     private MinPQ<SearchNode> MP = new MinPQ<>();
     private HashSet<WorldState> marked = new HashSet<>();
-    List<WorldState> finalSolutions = new ArrayList<>();
 
     public Solver(WorldState initial) {
         MP.insert(new SearchNode(initial, 0, null));
-        marked.add(initial);
+//        marked.add(initial);
         while (!MP.min().word.isGoal()) {
             SearchNode min = MP.delMin();
-            solutions.push(min.word);
+            solutions.add(min.word);
             for (WorldState w : min.word.neighbors()) {
 //                if (!marked.contains(w)) {
 //                    marked.add(w);
 //                    MP.insert(new SearchNode(w, min.moves + 1, min));
 //                }
                 if (min.previousNode == null || !w.equals(min.previousNode.word)) {
-                    marked.add(w);
+//                    marked.add(w);
                     MP.insert(new SearchNode(w, min.moves + 1, min));
                 }
             }
         }
-        solutions.push(MP.min().word);
+        solutions.add(MP.min().word);
     }
 
     public int moves() {
@@ -38,10 +37,7 @@ public class Solver {
     }
 
     public Iterable<WorldState> solution() {
-        while (!solutions.isEmpty()) {
-            finalSolutions.add(solutions.pop());
-        }
-        return finalSolutions;
+        return solutions;
     }
 
     private class SearchNode implements Comparable<SearchNode> {
