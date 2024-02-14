@@ -3,7 +3,9 @@ package hw4.puzzle;
 import edu.princeton.cs.algs4.MinPQ;
 import edu.princeton.cs.algs4.Stack;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 
 public class Solver {
     private Stack<WorldState> solutions = new Stack<>();
@@ -35,7 +37,11 @@ public class Solver {
     }
 
     public Iterable<WorldState> solution() {
-        return solutions;
+        List<WorldState> finalSolutions = new ArrayList<>();
+        while (!solutions.isEmpty()) {
+            finalSolutions.add(solutions.pop());
+        }
+        return finalSolutions;
     }
 
     private class SearchNode implements Comparable<SearchNode> {
