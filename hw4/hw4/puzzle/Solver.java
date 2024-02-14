@@ -11,6 +11,7 @@ public class Solver {
     private Stack<WorldState> solutions = new Stack<>();
     private MinPQ<SearchNode> MP = new MinPQ<>();
     private HashSet<WorldState> marked = new HashSet<>();
+    List<WorldState> finalSolutions = new ArrayList<>();
 
     public Solver(WorldState initial) {
         MP.insert(new SearchNode(initial, 0, null));
@@ -29,7 +30,7 @@ public class Solver {
                 }
             }
         }
-
+        solutions.push(MP.min().word);
     }
 
     public int moves() {
@@ -37,7 +38,6 @@ public class Solver {
     }
 
     public Iterable<WorldState> solution() {
-        List<WorldState> finalSolutions = new ArrayList<>();
         while (!solutions.isEmpty()) {
             finalSolutions.add(solutions.pop());
         }
