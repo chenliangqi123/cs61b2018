@@ -1,11 +1,11 @@
 package hw4.puzzle;
 
 import edu.princeton.cs.algs4.MinPQ;
-import edu.princeton.cs.algs4.Stack;
 
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Stack;
 
 public class Solver {
     private List<WorldState> solutions = new ArrayList<>();
@@ -17,7 +17,7 @@ public class Solver {
 //        marked.add(initial);
         while (!MP.min().word.isGoal()) {
             SearchNode min = MP.delMin();
-            solutions.add(min.word);
+//            solutions.add(min.word);
             for (WorldState w : min.word.neighbors()) {
 //                if (!marked.contains(w)) {
 //                    marked.add(w);
@@ -29,7 +29,7 @@ public class Solver {
                 }
             }
         }
-        solutions.add(MP.min().word);
+//        solutions.add(MP.min().word);
     }
 
     public int moves() {
@@ -37,6 +37,15 @@ public class Solver {
     }
 
     public Iterable<WorldState> solution() {
+        Stack<WorldState> stack = new Stack<>();
+        SearchNode pos = MP.min();
+        while (pos != null) {
+            stack.push(pos.word);
+            pos = pos.previousNode;
+        }
+        while (!stack.isEmpty()) {
+            solutions.add(stack.pop());
+        }
         return solutions;
     }
 
