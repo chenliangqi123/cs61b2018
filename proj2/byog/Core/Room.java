@@ -1,16 +1,14 @@
 package byog.Core;
 
-import byog.SaveDemo.World;
-
 public class Room {
-    public int x;
-    public int y;
-    public int WIDTH;
-    public int HEIGHT;
-    public Room(int x, int y, int width, int height) {
-        this.x = x;
-        this.y = y;
-        this.WIDTH = width;
-        this.HEIGHT = height;
+    public Position topLeft, bottomRight;
+    public int width;
+    public int height;
+
+    public Room(Position anchor, int width, int height) {
+        this.topLeft = anchor;
+        this.bottomRight = anchor.shift(width, -height);
+        this.width = width;
+        this.height = height;
     }
 }

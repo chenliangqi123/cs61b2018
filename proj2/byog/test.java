@@ -1,6 +1,6 @@
 package byog;
 
-import byog.TileEngine.TETile;
+//import byog.TileEngine.TETile;
 
 public class test {
     public static void main(String[] args) {
@@ -12,7 +12,7 @@ public class test {
 //                System.out.println(j);
 //            }
 //        }
-        TETile[][] tile = new TETile[10][20];
-        System.out.println(tile.length);
+//        TETile[][] tile = new TETile[10][20];
+        System.out.println("good2");
     }
 }
