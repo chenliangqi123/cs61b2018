@@ -77,8 +77,6 @@ public class MapGenerator {
         }
     }
 
-
-
     public static void drawRooms(TETile[][] world, ArrayList<Room> rooms) {
         for (Room room : rooms) {
             int width = room.width, height = room.height;
@@ -106,10 +104,58 @@ public class MapGenerator {
                     world[x+i][y-j] = Tileset.FLOOR;
                 }
             }
-
-
-
         }
+    }
+
+    public static void drawHorizontalHallway(Position origin, Position destination, TETile[][] world) {
+        for (int i = Math.min(origin.x, destination.x); i <= Math.max(origin.x, destination.x); i++) {
+            world[i][origin.y] = Tileset.FLOOR;
+            world[i][origin.y + 1] = Tileset.WALL;
+            world[i][origin.y - 1] = Tileset.WALL;
+        }
+    }
+    public static void drawVerticalHallway(Position origin, Position destination, TETile[][] world) {
+        for (int j = Math.min(origin.y, destination.y); j <= Math.max(origin.y, destination.y); j++) {
+            world[origin.x][j] = Tileset.FLOOR;
+            world[origin.x + 1][j] = Tileset.WALL;
+            world[origin.x - 1][j] = Tileset.WALL;
+        }
+    }
+
+    public static void drawTopLeftCorner(Position coordinate, TETile[][] world) {
+        int x = coordinate.x, y = coordinate.y;
+        world[x][y] = Tileset.FLOOR;
+        world[x - 1][y] = Tileset.WALL;
+        world[x - 1][y + 1] = Tileset.WALL;
+        world[x][y + 1] = Tileset.WALL;
+    }
+
+    public static void drawTopRightCorner(Position coordinate, TETile[][] world) {
+        int x = coordinate.x, y = coordinate.y;
+        world[x][y] = Tileset.FLOOR;
+        world[x + 1][y] = Tileset.WALL;
+        world[x + 1][y + 1] = Tileset.WALL;
+        world[x][y + 1] = Tileset.WALL;
+    }
+
+    public static void drawBottomLeftCorner(Position coordinate, TETile[][] world) {
+        int x = coordinate.x, y = coordinate.y;
+        world[x][y] = Tileset.FLOOR;
+        world[x - 1][y] = Tileset.WALL;
+        world[x - 1][y - 1] = Tileset.WALL;
+        world[x][y - 1] = Tileset.WALL;
+    }
+
+    public static void drawBottomRightCorner(Position coordinate, TETile[][] world) {
+        int x = coordinate.x, y = coordinate.y;
+        world[x][y] = Tileset.FLOOR;
+        world[x + 1][y] = Tileset.WALL;
+        world[x + 1][y - 1] = Tileset.WALL;
+        world[x][y - 1] = Tileset.WALL;
+    }
+
+    public static void drawBottomRightHallway(Position origin, Position destination, TETile[][] world) {
+        
     }
 
 //    public static void main(String[] args) {
