@@ -154,8 +154,20 @@ public class MapGenerator {
         world[x][y - 1] = Tileset.WALL;
     }
 
-    public static void drawBottomRightHallway(Position origin, Position destination, TETile[][] world) {
-        
+    public static void drawBottomRightHallway(Room room1, Room room2, TETile[][] world) {
+        int originX = room1.topLeft.x + room1.width;
+        int min = room2.topLeft.y + 1, max = room1.topLeft.y;
+        int originY = RANDOM.nextInt(max - min + 1) + min;
+        int destinationX = room2.topLeft.x + RANDOM.nextInt(room2.topLeft.x + room2.width);
+        int destinationY = room2.topLeft.y + 1;
+        Position origin = new Position(originX, originY);
+        Position destination = new Position(destinationX, destinationY);
+        Position leftCorner = new Position(destinationX - 1, originY);
+        Position bottomCorner = new Position(destinationX, originY - 1);
+        Position corner = new Position(destinationX, originY);
+        drawHorizontalHallway(origin, leftCorner, world);
+        drawVerticalHallway(bottomCorner, destination, world);
+        drawTopRightCorner(corner, world);
     }
 
 //    public static void main(String[] args) {
