@@ -66,7 +66,7 @@ public class Game {
                         }
                     } while (c != 's');
 
-                    SEED = Long.parseLong(trueSeed);
+                    SEED = getStringtoNum(trueSeed);
                     StdDraw.pause(500);
                     System.out.println("## Game final SEED: " + SEED);
 
@@ -376,7 +376,7 @@ public class Game {
         switch (mode) {
             case ('n'):
             case ('N'): {
-                SEED = Long.parseLong(input);
+                SEED = getStringtoNum(input);
 
                 //ter.initialize(wgp.width(), wgp.height());
                 WorldGenerator worldGenerator = new WorldGenerator(SEED);
@@ -446,6 +446,19 @@ public class Game {
                 return world;
             }
         }
+    }
+    /* abstract the number in Strings */
+    private long getStringtoNum(String str) {
+        str = str.trim();
+        String str2 = "";
+        if (!"".equals(str)) {
+            for (int i = 0; i < str.length(); i++) {
+                if (str.charAt(i) >= 48 && str.charAt(i) <= 57) {
+                    str2 = str2 + str.charAt(i);
+                }
+            }
+        }
+        return Long.parseLong(str2);
     }
 
 
