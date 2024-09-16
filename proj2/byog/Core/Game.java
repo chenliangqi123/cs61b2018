@@ -171,6 +171,9 @@ public class Game {
                 if (upper.equals(Tileset.WALL)) {
 
                     return cw;
+                } else if (upper.equals(Tileset.LOCKED_DOOR)) {
+                    gameOver = true;
+                    return cw;
                 } else {
                     cw.getWorld()[cw.getPlayer().x][cw.getPlayer().y + 1] = Tileset.PLAYER;
                     cw.getWorld()[cw.getPlayer().x][cw.getPlayer().y] = Tileset.FLOOR;
@@ -199,6 +202,9 @@ public class Game {
                 if (left.equals(Tileset.WALL)) {
 
                     return cw;
+                } else if (left.equals(Tileset.LOCKED_DOOR)) {
+                    gameOver = true;
+                    return cw;
                 } else {
 
                     cw.getWorld()[cw.getPlayer().x - 1][cw.getPlayer().y] = Tileset.PLAYER;
@@ -211,6 +217,9 @@ public class Game {
             case ('D'): {
                 if (right.equals(Tileset.WALL)) {
 
+                    return cw;
+                } else if (right.equals(Tileset.LOCKED_DOOR)) {
+                    gameOver = true;
                     return cw;
                 } else {
 
