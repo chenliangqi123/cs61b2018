@@ -366,9 +366,88 @@ public class Game {
         // and return a 2D tile representation of the world that would have been
         // drawn if the same inputs had been given to playWithKeyboard().
 
-        TETile[][] finalWorldFrame = null;
-        return finalWorldFrame;
+        char playMode = input.charAt(0);
+        System.out.println("MODE：" + playMode);
+        return enterGame(playMode, input);
     }
+
+    private TETile[][] enterGame(char mode, String input) {
+        //pick the initial character to be playMode choice.
+        switch (mode) {
+            case ('n'):
+            case ('N'): {
+                SEED = Long.parseLong(input);
+
+                //ter.initialize(wgp.width(), wgp.height());
+                WorldGenerator worldGenerator = new WorldGenerator(SEED);
+                World cw = worldGenerator.generateWorld();
+                //ter.renderFrame(cw.world());
+
+                int start = 1;
+                for (int i = 0; i < input.length(); i += 1) {
+                    if (input.charAt(i) == 's' || input.charAt(i) == 'S') {
+                        start = i + 1;
+                        break;
+                    }
+                }
+                for (int i = start; i < input.length(); i += 1) {
+                    cw = move(cw, input.charAt(i));
+                    if ((input.charAt(i) == ':' && input.charAt(i + 1) == 'q')
+                            || (input.charAt(i) == ':' && input.charAt(i + 1) == 'Q')) {
+                        gameOver = true;
+                        saveCrazyWorld(cw);
+                        System.out.println("Saved");
+                        break;
+                    }
+                }
+                return cw.getWorld();
+            }
+            case ('l'):
+            case ('L'): {
+                //load game.
+                World cw = loadCrazyWorld();
+                int start = 1;
+                for (int i = 0; i < input.length(); i += 1) {
+                    if (input.charAt(i) == 's' || input.charAt(i) == 'S') {
+                        start = i + 1;
+                        break;
+                    }
+                }
+                for (int i = start; i < input.length(); i += 1) {
+                    if ((input.charAt(i) == ':' && input.charAt(i + 1) == 'q')
+                            || (input.charAt(i) == ':' && input.charAt(i + 1) == 'Q')) {
+                        gameOver = true;
+                        saveCrazyWorld(cw);
+                        System.out.println("Saved");
+                        break;
+                    }
+                    cw = move(cw, input.charAt(i));
+                }
+                return cw.getWorld();
+            }
+            case ('q'):
+            case ('Q'): {
+                gameOver = true;
+                TETile[][] world = new TETile[80][30];
+                for (TETile[] x : world) {
+                    for (TETile y : x) {
+                        y = Tileset.NOTHING;
+                    }
+                }
+                return world;
+            } default: {
+                gameOver = true;
+                TETile[][] world = new TETile[80][30];
+                for (TETile[] x : world) {
+                    for (TETile y : x) {
+                        y = Tileset.NOTHING;
+                    }
+                }
+                return world;
+            }
+        }
+    }
+
 
 
 }
